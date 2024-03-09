@@ -3,6 +3,7 @@ require("./config/database").connect();
 const chatRoutes = require("./Routes/chatRoutes");
 const messageRoutes = require("./Routes/messageRoutes");
 const userRoutes = require("./Routes/userRoutes");
+const Chat = require("./models/chatModels");
 
 const app = express();
 const port = 3000;
@@ -26,9 +27,9 @@ const server = app.listen(port, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: ["*"],
+    origin: ["http://127.0.0.1:59936", "http://localhost:59936", "*"],
   },
-});
+}); // const io = require('socket.io')(server, {
 
 io.on("connection", (socket) => {
   console.log("Connected to socket.io");
@@ -45,7 +46,7 @@ io.on("connection", (socket) => {
 
   socket.on("new message", async (newMessageRecieved) => {
     try {
-      const chatId = newMessageRecieved.chatId;
+      const { chatId } = newMessageRecieved;
 
       if (!chatId) {
         console.log("chatId not defined");
@@ -53,7 +54,7 @@ io.on("connection", (socket) => {
         return;
       }
 
-      const chat = await chat.findById(chatId).populate("users");
+      const chat = await Chat.findById(chatId).populate("users");
 
       console.log("Received message in chat:", chat);
 
@@ -63,11 +64,27 @@ io.on("connection", (socket) => {
         return;
       }
 
+      const sender = chat.users.find(
+        (user) => user._id.toString() != newMessageRecieved.senderId.toString()
+      );
+      if (!sender) {
+        console.log(
+          "Sender not found in chat users:",
+          newMessageRecieved.senderId
+        );
+        return;
+      }
+
+      const newMessageWithSenderName = {
+        ...newMessageRecieved,
+        senderName: sender.name,
+      };
+
       chat.users.forEach((user) => {
         if (user._id.toString() !== newMessageRecieved.senderId.toString()) {
           socket
             .in(user._id.toString())
-            .emit("message received", newMessageRecieved);
+            .emit("message received", newMessageWithSenderName);
         }
       });
     } catch (error) {

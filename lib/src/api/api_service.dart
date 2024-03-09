@@ -4,7 +4,7 @@ import 'package:chat_app/src/group/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = 'http://10.0.2.2:3000';
+  static const String baseUrl = 'http://10.0.5.212:3000';
 
   static Future createUser(String name, String email, String password) async {
     final response = await http.post(
