@@ -18,13 +18,16 @@ Welcome to the Flutter Chat App repository! This project is a real-time chat app
 
 <div style="display: flex; flex-direction: row;">
 <img src = "https://github.com/Mayank-kr-sh/Flutter_Chat_App/assets/107645749/7d014a42-d385-4462-9a92-6136c99eda7b" width="300" height="700">
-&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src = "https://github.com/Mayank-kr-sh/Flutter_Chat_App/assets/107645749/269e7a38-42c0-4dba-a331-a4123714355b" width="300" height="700">
-&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div style="display: flex; flex-direction: row;">
 <img src = "https://github.com/Mayank-kr-sh/Flutter_Chat_App/assets/107645749/41921414-d322-4912-9274-84055c793fa2" width="300" height="700">
-&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src = "https://github.com/Mayank-kr-sh/Flutter_Chat_App/assets/107645749/5ef8eb07-4741-412b-baf5-3b8080a74e29" width="300" height="700">
-&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 
 ## Technologies Used
